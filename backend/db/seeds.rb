@@ -7,9 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 101.times do |i|
-    User.create({username: "user-#{i}", password: '123456', email: "user-#{i}@mailinator.com"})
+    User.create!({username: "username#{i}", password: '123456', email: "user-#{i}@mailinator.com"})
 end
 
-User.first.items.create([
-    {title: 'item 1', description: 'description 1'},
-])
+Item.create({title: 'Item 1', description: 'Description 1', user_id: User.last.id})
