@@ -7,3 +7,4 @@ json.tagList item.tag_list
 json.seller item.user, partial: 'profiles/profile', as: :user
 json.favorited signed_in? ? current_user.favorited?(item) : false
 json.favorites_count item.favorites_count || 0
+json.image item.image || "placeholder.png"
