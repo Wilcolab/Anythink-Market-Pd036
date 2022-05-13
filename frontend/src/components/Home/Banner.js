@@ -10,8 +10,8 @@ function useSearchInput(initialValue, onItemsLoaded) {
     const promise = title
       ? agentObj.Items.byTitle(title)
       : agentObj.Items.all();
-    const items = await promise;
-    onItemsLoaded(items);
+    const result = await promise;
+    onItemsLoaded(result.items, value);
   }
 
   function handleChange(e) {
@@ -31,7 +31,7 @@ function useSearchInput(initialValue, onItemsLoaded) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onItemsLoaded: (items) => dispatch({ type: ITEMS_LOADED, payload: items }),
+  onItemsLoaded: (items, searchTerm) => dispatch({ type: ITEMS_LOADED, payload: {items,searchTerm} }),
 });
 
 const Banner = ({ onItemsLoaded }) => {

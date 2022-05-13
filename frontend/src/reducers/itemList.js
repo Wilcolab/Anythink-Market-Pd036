@@ -85,6 +85,7 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         items: action.payload.items || [],
+        searchTerm: action.payload.searchTerm,
       };
     default:
       return state;
