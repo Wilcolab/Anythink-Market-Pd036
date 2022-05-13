@@ -43,6 +43,7 @@ const Banner = ({ onItemsLoaded }) => {
         <h2 className="search-title">
           A place to get
           <input
+            id="search-box"
             type="text"
             placeholder="What is it that you truly desire?"
             value={value}
