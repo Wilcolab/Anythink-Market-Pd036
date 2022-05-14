@@ -11,7 +11,7 @@ function useSearchInput(initialValue, onItemsLoaded) {
       ? agentObj.Items.byTitle(title)
       : agentObj.Items.all();
     const result = await promise;
-    onItemsLoaded(result.items, value);
+    onItemsLoaded(result.items, title);
   }
 
   function handleChange(e) {
