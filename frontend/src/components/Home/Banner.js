@@ -31,7 +31,8 @@ function useSearchInput(initialValue, onItemsLoaded) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onItemsLoaded: (items, searchTerm) => dispatch({ type: ITEMS_LOADED, payload: {items,searchTerm} }),
+  onItemsLoaded: (items, searchTerm) =>
+    dispatch({ type: ITEMS_LOADED, payload: { items, searchTerm } }),
 });
 
 const Banner = ({ onItemsLoaded }) => {
