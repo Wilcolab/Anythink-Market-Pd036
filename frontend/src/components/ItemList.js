@@ -1,14 +1,25 @@
 import ItemPreview from "./ItemPreview";
 import ListPagination from "./ListPagination";
 import React from "react";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.itemList.searchTerm,
+  };
+};
 
 const ItemList = (props) => {
   if (!props.items) {
     return <div className="py-4">Loading...</div>;
   }
 
-  if (props.items.length === 0) {
-    return <div className="py-4">No items are here... yet.</div>;
+  if (props.items.length === 0 && props.searchTerm) {
+    return (
+      <div className="py-4">
+        <span id="empty">no items found for "{props.searchTerm}"</span>
+      </div>
+    );
   }
 
   return (
@@ -32,4 +43,4 @@ const ItemList = (props) => {
   );
 };
 
-export default ItemList;
+export default connect(mapStateToProps)(ItemList);
