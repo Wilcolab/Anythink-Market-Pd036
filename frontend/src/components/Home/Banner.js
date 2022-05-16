@@ -51,6 +51,7 @@ const Banner = ({ onItemsLoaded }) => {
         <h2 className="search-title">
           A place to{" "}
           <span
+            id="get-part"
             tabIndex={0}
             role="button"
             style={{ cursor: "pointer" }}
