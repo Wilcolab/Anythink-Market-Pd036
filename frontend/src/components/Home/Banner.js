@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 function useSearchInput(initialValue, onItemsLoaded) {
   const [value, setValue] = React.useState(initialValue);
+  const [visible, setVisible] = React.useState(false);
+
   async function searchByTitle(title) {
     const promise = title
       ? agentObj.Items.byTitle(title)
@@ -27,6 +29,8 @@ function useSearchInput(initialValue, onItemsLoaded) {
   return {
     value,
     onChange: handleChange,
+    visible,
+    setVisible,
   };
 }
 
@@ -36,20 +40,35 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Banner = ({ onItemsLoaded }) => {
-  const { value, onChange } = useSearchInput("", onItemsLoaded);
+  const { value, onChange, visible, setVisible } = useSearchInput(
+    "",
+    onItemsLoaded
+  );
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" className="banner-img" />
         <h2 className="search-title">
-          A place to get
-          <input
-            id="search-box"
-            type="text"
-            placeholder="What is it that you truly desire?"
-            value={value}
-            onChange={(e) => onChange(e)}
-          />{" "}
+          A place to{" "}
+          <span
+            id="get-part"
+            tabIndex={0}
+            role="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => setVisible(true)}
+            onKeyDown={() => setVisible(true)}
+          >
+            get
+          </span>
+          {visible && (
+            <input
+              id="search-box"
+              type="text"
+              placeholder="What is it that you truly desire?"
+              value={value}
+              onChange={(e) => onChange(e)}
+            />
+          )}{" "}
           the cool stuff.
         </h2>
       </div>
